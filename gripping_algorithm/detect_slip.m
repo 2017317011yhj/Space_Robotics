@@ -1,37 +1,51 @@
-function slip_flg = detect_slip(R_jtc, touch_flg)
+function [speed_drop_flg, touch_flg, q_touch_flg, speed_drop_vec] = detectTouch3(touch_start, R_jtc, R_Jd, Rv_cmd)
 
-    % --- 현재 조인트 전류 ---
-    joint0_curr = R_jtc(1);
-    joint1_curr = R_jtc(2);
-    joint2_curr = R_jtc(3);
+    % --- 파라미터 설정 ---
 
-    % --- 임계값 설정 ---
-    % 슬립 시 전류 크기가 거의 0에 가까워짐
-    near_zero_threshold = 2e-5;         % [A]
-    slip_drop_threshold = -1.0e-4;      % [A] 전류 급감
+    speed_err_thresh      = 1e-2;
+    current_min_thresh    = 0.2e-3;
+    current_max_thresh    = 2.5e-3;
 
-    persistent prev_R_jtc
-    persistent is_slipping
+    % --- 출력 초기화 ---
+    speed_drop_flg  = 0;
+    touch_flg       = 0;
+    q_touch_flg     = 0;
+    speed_drop_vec  = zeros(3,1);  % double 타입 고정
 
-    if isempty(prev_R_jtc)
-        prev_R_jtc = zeros(3,1);
-    end 
+    % --- 전류 추출 ---
+    R_qt0 = R_jtc(1);
+    R_qt1 = R_jtc(2);
+    R_qt2 = R_jtc(3);
 
-    % --- 전류 변화량 계산 ---
-    dI_joint0 = joint0_curr - prev_R_jtc(1);
-    dI_joint1 = joint1_curr - prev_R_jtc(2);
-    dI_joint2 = joint2_curr - prev_R_jtc(3);
-    
+    q0_touch_flg = 0;
+    q1_touch_flg = 0;
+    q2_touch_flg = 0;
 
-    if touch_flg ==1 && dI < -1e-04
-        if  abs(I) > slip_threshold
-            slip_going_flg =1;
-        else abs(I) < slip_complete_th
-            slip_comp_flg =1;
-        end
+    % --- 속도 차이 계산 ---
+    raw_vec = abs(Rv_cmd - R_Jd) > speed_err_thresh;
+    speed_drop_vec = double(raw_vec);  % 형 변환
+
+    if any(raw_vec)
+        speed_drop_flg = 1;
     end
 
+    if touch_start == 1 
+        if abs(R_qt0) >= current_min_thresh && abs(R_qt0) < current_max_thresh
+            q0_touch_flg = 1;
+        end
+        if abs(R_qt1) >= current_min_thresh && abs(R_qt1) < current_max_thresh
+            q1_touch_flg = 1;
+        end
+        if abs(R_qt2) >= current_min_thresh && abs(R_qt2) < current_max_thresh
+            q2_touch_flg = 1;
+        end
 
-    % --- 전류 업데이트 ---
-    prev_R_jtc = R_jtc;
+        if q0_touch_flg || q1_touch_flg || q2_touch_flg
+           touch_flg = 1;
+        end
+
+        % if  q_touch_flg
+        %     touch_flg = 1;
+        % end
+    end
 end
