@@ -3,6 +3,7 @@ clc; clear; close all;
 T = 50;  % 총 시간 프레임 수
 num_joints = 3;
 
+%% 우리집 강아지는 복슬 강아지
 % 파라미터 설정
 speed_err_thresh = 8e-02;
 current_spike_thresh = 1e-3;
