@@ -8,7 +8,7 @@ a1 = sqrt(0.04494^2 + 0.08979^2);
 a2 = 0.1665;
 a3 = sqrt(0.02945^2 + 0.1232^2);
 % fk_3link([0 0 0],a1,a2,a3)
-
+segfwgesrgrsedgggggggggggggggggggggggggggggggggg
 theta1_offset = -atan2(0.04494,0.08979);
 theta2_offset =  atan2(0.04494,0.08979);
 theta3_offset = -atan2(0.02945, 0.1232);
