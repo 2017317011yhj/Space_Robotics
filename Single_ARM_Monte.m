@@ -1,7 +1,7 @@
 close all;
 clc;
 
-% % % % Service Body
+%% Service Body
 S_Body_Mass = 5;
 
 S_init_pos = [0 0 0]';
@@ -9,8 +9,8 @@ S_init_vel = [0 0 0]';
 
 S_init_att = [0 0 0]';%[deg]
 S_init_rate = [0 0 0]';%[deg/sec]
-% % % % Service ARM
 
+%% Service ARM
 L_Joint_Offset = [
     -0.464048464137005
      0.464048464137005
@@ -62,7 +62,7 @@ ARM_T_PID = [100 0 0];
 ARM_V_PID = [10 0 5]*0.1;
 ARM_P_PID = [10 0 20]*0.1;
 
-% % % Contact Parameter
+%% Contact Parameter
 % Body to Target
 B2T_Siffness = 1000;%N/m
 B2T_Damping = 500;%N/(m/s)
@@ -103,7 +103,7 @@ L32B_Stiffness = 1000;
 L32B_Damping = 1;
 L32B_TRW = 0.001;
 
-% % % % % % RW & & & & & & & & & & & & &
+%% RW
 RW_Mass = 100;%[g]
 RW_Init_Speed = 1000;%[RPM]
 
@@ -111,7 +111,7 @@ RW_Att_P = 0.1;
 RW_Att_I = 0.2;
 RW_Att_D = 0.5;
 
-% % % % % Body Contact Sensor
+%% Body Contact Sensor
 sensor2target_stiffness = 1000;
 sensor2target_damping = 100;
 sensor2target_TRW = 0.001;
@@ -119,7 +119,7 @@ sensor2target_static_friction = 1.0;
 sensor2target_dynamic_friction = 0.9;
 sensor2target_velocity=1e-4;
 
-% % % % Target Body
+%% Target Body
 T_Body_Mass = 4;
 
 T_init_pos = [1 0 0]';
@@ -128,3 +128,4 @@ T_init_vel = [0 0 0]';
 T_init_att = [0 0 0]';%[deg] ZYX
 T_init_rate = [0 0 0]';%[deg/sec]
 
+%% Monte Loop 
