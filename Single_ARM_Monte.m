@@ -1,6 +1,8 @@
 close all;
 clc;
 
+Sim_Time  = 100;
+
 %% Service Body
 S_Body_Mass = 5;
 
@@ -129,3 +131,53 @@ T_init_att = [0 0 0]';%[deg] ZYX
 T_init_rate = [0 0 0]';%[deg/sec]
 
 %% Monte Loop 
+
+% 변인
+% Relative Position - [X Y ~]
+% Relative Attitude - Yaw only
+
+case_num = 10;%Random 50 개의 case
+
+% 원하는 각도 범위
+%[-180 ~ 180] [deg] 이내로 해야함
+min_angle = -50;%[deg]
+max_angle = 50;%[deg]
+angle_limit = [min_angle, max_angle]';
+
+min_posX = -0.1;%[m]
+max_posX = 0.1;%[m]
+min_posY = -0.1;%[m]
+max_posY = 0.1;%[m]
+posX_limit = [min_posX, max_posX]';
+posY_limit = [min_posY, max_posY]';
+
+T_init_data = min_angle:0.01:max_angle;  % 예시 데이터
+T_init_angle_list = datasample(T_init_data, case_num, 'Replace', false)';  % 중복 없이 50개
+
+T_init_posX_data = min_posX:0.001:max_posX;  % 예시 데이터
+T_init_posX = datasample(T_init_posX_data, case_num, 'Replace', false)';  % 중복 없이 50개
+T_init_posY_data = min_posY:0.001:max_posY;  % 예시 데이터
+T_init_posY = datasample(T_init_posY_data, case_num, 'Replace', false)';  % 중복 없이 50개
+T_init_pos_list = [T_init_posX, T_init_posY] + [0.35 0];
+
+save('sim_info.mat', 'case_num', 'angle_limit', 'posX_limit', 'posY_limit',"T_init_pos_list", ...
+       'T_init_pos_list','T_init_angle_list');
+
+for i=1:case_num
+    str = sprintf('Process Case %d/%d, %.2f [%%]...', i, case_num, (i/case_num)*100);
+    disp(str);
+
+    T_init_pos = [T_init_pos_list(i,1) T_init_pos_list(i,2) 0]';
+    T_init_att = [T_init_angle_list(i),0,0]';
+    simResult = sim('Model2', 'StopTime', num2str(Sim_Time));  % 각 시뮬 200초까지 실행
+    
+    % str = sprintf('Case%d_Result = 'simResult''', i);
+    % eval(str);
+    str = sprintf('save(''case_num%d_Result.mat'', ''simResult'')', i);
+    eval(str);
+end
+
+
+
+
+
