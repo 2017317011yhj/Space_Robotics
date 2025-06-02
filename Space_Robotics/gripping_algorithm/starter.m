@@ -56,8 +56,8 @@ Joint2_down_limit = -180;%[deg]
 Joint2_upper_limit = 180;%[deg]
 
 % % % arm2target contact % % %
-arm2target_stiffness = 2;%N/m
-arm2target_damping = 1;%N/(m/s)
+arm2target_stiffness = 10%2;%N/m
+arm2target_damping =  5%1;%N/(m/s)
 arm2target_TRW = 1e-4;%m
 
 arm2target_static_friction = 0.6;
