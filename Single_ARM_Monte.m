@@ -136,7 +136,7 @@ T_init_rate = [0 0 0]';%[deg/sec]
 % Relative Position - [X Y ~]
 % Relative Attitude - Yaw only
 
-case_num = 3;%Random 50 개의 case
+case_num = 10;%Random 50 개의 case
 
 % 원하는 각도 범위
 %[-180 ~ 180] [deg] 이내로 해야함
@@ -158,7 +158,7 @@ T_init_posX_data = min_posX:0.001:max_posX;  % 예시 데이터
 T_init_posX = datasample(T_init_posX_data, case_num, 'Replace', false)';  % 중복 없이 50개
 T_init_posY_data = min_posY:0.001:max_posY;  % 예시 데이터
 T_init_posY = datasample(T_init_posY_data, case_num, 'Replace', false)';  % 중복 없이 50개
-T_init_pos_list = [T_init_posX, T_init_posY]  + [0.35,0,0]';
+T_init_pos_list = [T_init_posX, T_init_posY] + [0.35 0];
 
 save('sim_info.mat', 'case_num', 'angle_limit', 'posX_limit', 'posY_limit',"T_init_pos_list", ...
        'T_init_pos_list','T_init_angle_list');
