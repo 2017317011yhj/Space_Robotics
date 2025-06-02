@@ -122,7 +122,7 @@ sensor2target_velocity=1e-4;
 % % % % Target Body
 T_Body_Mass = 4;
 
-T_init_pos = [1 0 0]';
+T_init_pos = [0.3 0 0.05]';
 T_init_vel = [0 0 0]';
 
 T_init_att = [0 0 0]';%[deg] ZYX
