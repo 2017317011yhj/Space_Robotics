@@ -56,30 +56,30 @@ Joint2_down_limit = -180;%[deg]
 Joint2_upper_limit = 180;%[deg]
 
 % % % arm2target contact % % %
-arm2target_stiffness = 2;%N/m
-arm2target_damping = 1;%N/(m/s)
-arm2target_TRW = 1e-4;%m
+arm2target_stiffness = 100;%N/m
+arm2target_damping = 10;%N/(m/s)
+arm2target_TRW = 1e-6;%m
 
-arm2target_static_friction = 0.6;
-arm2target_dynamic_friction = 0.2;
+arm2target_static_friction = 0.8;
+arm2target_dynamic_friction = 0.7;
 arm2target_velocity = 1e-4;%m/s
 
 % % % body2target contact % % %
-body2target_stiffness = 1000;%N/m
+body2target_stiffness = 10;%N/m
 body2target_damping = 100;%N/(m/s)
 body2target_TRW = 1e-4;%m
 
-body2target_static_friction = 0.6;
-body2target_dynamic_friction = 0.5;
+body2target_static_friction = 0.8;
+body2target_dynamic_friction = 0.7;
 body2target_velocity = 1e-4;%m/s
 
 % % % sernsor2target contact % % %
-sensor2target_stiffness = 1000;%N/m
+sensor2target_stiffness = 10;%N/m
 sensor2target_damping = 100;%N/(m/s)
-sensor2target_TRW = 1e-4;%m
+sensor2target_TRW = 1e-2;%m
 
-sensor2target_static_friction = 0.6;
-sensor2target_dynamic_friction = 0.5;
+sensor2target_static_friction = 0.8;
+sensor2target_dynamic_friction = 0.7;
 sensor2target_velocity = 1e-4;%m/s
 
 % % % % % % Attitude Control Gain % % % % % % %
@@ -113,6 +113,7 @@ if flag == 1
     L_joint2_P = 0.001;
     L_Joint2_D = 0.00;
     L_Joint2_I = 0.001;
+    
 elseif flag == 2
     % joint_velocity_control_mode Gain Parameter
     % % % % joint control init % % %
@@ -133,9 +134,9 @@ elseif flag == 2
     R_VEL1_P = 0.01;
     R_VEL2_P = 0.0005;
 
-    R_VEL0_I = 0.01;
-    R_VEL1_I = 0.1;
-    R_VEL2_I = 0.02;
+    R_VEL0_I = 0.00;%0.01
+    R_VEL1_I = 0.00;%0.1
+    R_VEL2_I = 0.02;%0.02
 
     R_VEL0_D = 0.02;
     R_VEL1_D = 0.001;
