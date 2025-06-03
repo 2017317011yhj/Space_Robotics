@@ -11,10 +11,10 @@ S_init_att = [0 0 0]';%[deg]
 S_init_rate = [0 0 0]';%[deg/sec]
 % % % % Service ARM
 
-L_Joint_Offset = [
-    -0.464048464137005
-     0.464048464137005
-    -0.234639156053821]';%[rad]
+% L_Joint_Offset = [
+%     -0.464048464137005
+%      0.464048464137005
+%     -0.234639156053821]';%[rad]
 
 Joint_Motor_Mass = 23;%[g]
 Link1_Mass = 11;%[g]
@@ -73,23 +73,23 @@ B2T_CV = 1e-3;%[m/s]
 
 % LINK1 to TARGET
 L12T_Siffness = 1000;%N/m
-L12T_Damping = 500;%N/(m/s)
+L12T_Damping = 50;%N/(m/s)
 L12T_TRW = 0.01;%m
 L2T_SF = 0.8;
 L2T_DF = 0.6;
 L2T_CV = 1e-3;%[m/s]
 % LINK2 to TARGET
 L22T_Siffness = 1000;%N/m
-L22T_Damping = 500;%N/(m/s)
+L22T_Damping = 50;%N/(m/s)
 L22T_TRW = 0.001;%m
 % LINK3 to TARGET
 L32T_Siffness = 1000;%N/m
-L32T_Damping = 10;%N/(m/s)
-L32T_TRW = 0.1;%m
+L32T_Damping = 50;%N/(m/s)
+L32T_TRW = 0.3;%m
 
 % LINK1 to Body
 L12B_Stiffness = 1000;
-L12B_Damping = 100;
+L12B_Damping = 1;
 L12B_TRW = 0.001;
 L2B_SF = 0.8;
 L2B_DF = 0.6;
@@ -122,7 +122,7 @@ sensor2target_velocity=1e-4;
 % % % % Target Body
 T_Body_Mass = 4;
 
-T_init_pos = [0.3 0 0.05]';
+T_init_pos = [0.3 0 0.025]';
 T_init_vel = [0 0 0]';
 
 T_init_att = [0 0 0]';%[deg] ZYX
