@@ -2,7 +2,7 @@ clear all;
 close all;
 clc;
 
-sim_info = load('sim_info.mat');%sim_info에 case에 따른 위치와 자세가 저장되어있음
+sim_info = load('sim_info.mat');
 case_num = sim_info.case_num;
 
 for i=1:case_num
@@ -37,7 +37,7 @@ for i=1:case_num
     eval('ylabel(''SDF'');');
     str = sprintf('title(''case %d'')',i);
     eval(str);
-    str = sprintf('legend(''sdf'',''skf'',''swf'')',i);
+    str = sprintf('legend(''sdf'',)',i);
     eval(str);
 end
 
