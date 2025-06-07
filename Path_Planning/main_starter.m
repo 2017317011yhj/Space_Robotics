@@ -30,7 +30,7 @@ L_Joint0_rate0 = 0;%[deg/sec]
 L_Joint0_rate1 = 0;%[deg/sec]
 L_Joint0_rate2 = 0;%[deg/sec]
 
-R_Joint0_angle0 = 45;%[deg]
+R_Joint0_angle0 = -45;%[deg]
 R_Joint0_angle1 = 0;%[deg] 
 R_Joint0_angle2 = 0;%[deg]
 R_Joint0_rate0 = 0;%[deg/sec]
@@ -91,9 +91,9 @@ L32T_TRW = 0.3;%m
 L12B_Stiffness = 1000;
 L12B_Damping = 1;
 L12B_TRW = 0.001;
-L2B_SF = 0.8;
-L2B_DF = 0.6;
-L2B_CV = 1e-3;
+L2B_SF = 0;
+L2B_DF = 0;
+L2B_CV = 0.0001;
 % LINK2 to Body
 L22B_Stiffness = 1000;
 L22B_Damping = 1;
